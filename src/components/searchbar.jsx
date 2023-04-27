@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styles from "@/styles/Searchbar.module.scss";
 import { FiChevronDown } from "react-icons/fi";
+import { AiOutlineSearch } from 'react-icons/ai'
 import Dropdown from "./dropdown";
 
 export default function Query({options, option, handleOption, search, handleSearch}) {
@@ -18,6 +19,9 @@ export default function Query({options, option, handleOption, search, handleSear
     <section className={styles.container}>
       <form action="" noValidate className={styles.search}>
         <label htmlFor="search">
+          <div>
+          <AiOutlineSearch />
+          </div>
           <input
             id="search"
             type="text"

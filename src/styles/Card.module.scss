@@ -8,6 +8,11 @@
   cursor: pointer;
   box-shadow: $light-shadow;
   border-radius: 8px;
+  transition: $transition;
+
+  &:hover {
+    transform: translateY(-1rem);
+  }
 
   article {
     height: 100%;
