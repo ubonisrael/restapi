@@ -1,0 +1,126 @@
+@import 'variables.scss';
+
+*,
+*::after,
+*::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  width: 100vw;
+  min-height: 100vh;
+  overflow-x: hidden;
+  font-family: $font;
+  font-size: 16px;
+}
+
+
+@mixin dark-mode {
+  color: $dark-text-color;
+  background-color: $dark-background-color;
+
+  header, button, ul, input, article {
+    background: $dark-element-color;
+  }
+
+  button:hover, article:hover {
+    background: $dark-element-color-hover;
+}
+
+  button, input, article {
+    color: $dark-text-color;
+  }
+
+}
+
+@mixin light-mode {
+  color: $light-text-color;
+  background: $light-background-color;
+
+  header, button, ul, input, article {
+    background: $light-element-color;
+  }
+
+  button:hover, article:hover {
+      background: $light-element-color-hover;
+  }
+
+  button, input, article {
+    color: $light-text-color;
+  }
+}
+
+.dark-theme {
+  @include dark-mode
+}
+
+.light-theme {
+  @include light-mode
+}
+
+ul {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  // letter-spacing: var(--spacing);
+  // line-height: 1.25;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/* Make images easier to work with */
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+@media (prefers-color-sheme: dark) {
+  /* defaults to dark theme */
+  body {
+    @include dark-mode
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

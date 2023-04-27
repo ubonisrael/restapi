@@ -1,38 +1,113 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Frontend Mentor - REST Countries API with color theme switcher solution
 
-## Getting Started
+This is a solution to the [REST Countries API with color theme switcher challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/rest-countries-api-with-color-theme-switcher-5cacc469fec04111f7b848ca). Frontend Mentor challenges help you improve your coding skills by building realistic projects. 
 
-First, run the development server:
+## Table of contents
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+- [Overview](#overview)
+  - [The challenge](#the-challenge)
+  - [Links](#links)
+- [My process](#my-process)
+  - [Built with](#built-with)
+  - [What I learned](#what-i-learned)
+  - [Continued development](#continued-development)
+  - [Useful resources](#useful-resources)
+- [Author](#author)
+
+
+## Overview
+
+### The challenge
+
+Users should be able to:
+
+- See all countries from the API on the homepage
+- Search for a country using an `input` field
+- Filter countries by region
+- Click on a country to see more detailed information on a separate page
+- Click through to the border countries on the detail page
+- Toggle the color scheme between light and dark mode *(optional)*
+
+### Links
+
+- Solution URL: [Add solution URL here](https://your-solution-url.com)
+- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+
+## My process
+
+### Built with
+
+- Semantic HTML5 markup
+- CSS custom properties
+- Flexbox
+- CSS Grid
+- Mobile-first workflow
+- SASS
+- [React](https://reactjs.org/) - JS library
+- [Next.js](https://nextjs.org/) - React framework
+
+
+### What I learned
+
+Learnt how to create a custom hook in React to detect a click outside a component.
+
+```js
+export default function ReactComponent() {
+    const [show, setShow] = useState(false)
+
+    const useOutsideClick = (callback) => {
+        const ref = useRef()
+
+        useEffect(() => {
+            const handleClick = (e) => {
+                if (ref.current && !ref.current.contains(e.target))
+                callback()
+            }
+
+            document.addEventListener('click', handleClick)
+
+            return document.removeEventListener('click', handleClick)
+        }, [ref])
+
+        return ref
+    }
+
+    const handleShowDiv = () => setShow(true)
+    const handleCloseDiv = () => setShow(false)
+
+    const ref = useOutsideClick(handleCloseDiv)
+
+    return (
+        <div classname='container'>
+            <button onClick={handleShowDiv}>
+            {show ? <div ref={ref} className='component'>Component showed</div> : null}
+        </div>
+    )
+}
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Also learnt how to fetch data using an array.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+```js
+const array = [some items]
+async function fetchDataFromArray() {
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+const data = await Promise.all(
+    array.map(async(arr) => await fetch(url).then(res => res.json()))
+)
+}
+```
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+### Continued development
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+I would like to continue building web apps with nextjs, focusing on getting the best out of the frameworks capabilities.
 
-## Learn More
+### Useful resources
 
-To learn more about Next.js, take a look at the following resources:
+- [Detect click outside component](https://www.robinwieruch.de/react-hook-detect-click-outside-component/) - Learnt how to create a custom hook to detect click outside component.
+- [Make API calls for each element in an array](https://stackoverflow.com/questions/66505445/how-to-make-api-calls-for-each-element-in-array) - Helped me find a better way to make api calls from an array, brilliant solution with regards to what I came up with.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Author
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- Frontend Mentor - [@ubonisrael](https://www.frontendmentor.io/profile/ubonisrael)
+- Twitter - [@jakpanudoh](https://www.twitter.com/jakpanudoh)
